@@ -9,6 +9,8 @@ public class TeleOpB extends OpMode{
     Robot myrobot =  new Robot();
     double left = 0.00;
     double right = 0.00;
+    double carouselleft = 0.00;
+    double carouselright = 0.00;
 
     @Override
     public void init(){
@@ -19,19 +21,39 @@ public class TeleOpB extends OpMode{
     public void loop(){
         left = -gamepad1.left_stick_y;
         right = -gamepad1.right_stick_y;
+        carouselleft = gamepad2.left_trigger;
+        //carouselright = gamepad2.right_trigger;
         telemetry.addData("left", left);
         telemetry.addData("right", right);
+        telemetry.addData("carouselleft", carouselleft);
+        telemetry.addData("carouselright",carouselright);
+
+        if (gamepad1.right_bumper){
+            myrobot.LeftDrive(right);
+            myrobot.RightDrive(left);
+        }else{
+            myrobot.LeftDrive(right/2);
+            myrobot.RightDrive(left/2);
+        }
 
         if (gamepad2.a){
-            myrobot.SpinCarouselRight();
-        } else if (gamepad2.b) {
-            myrobot.SpinCarouselLeft();
-        }else{
-            myrobot.StopCarousel();
+            myrobot.MoveBottomArmForward();
+        }else if(gamepad2.b){
+            myrobot.MoveBottomArmBackward();
+        }else {
+            myrobot.StopBottomArm();
+        }
+
+        if (gamepad2.x){
+            myrobot.MoveTopArmForward();
+        }else if(gamepad2.y){
+            myrobot.MoveTopArmBackward();
+        }else {
+            myrobot.StopTopArm();
         }
 
         telemetry.update();
-        myrobot.LeftDrive(right);
-        myrobot.RightDrive(left);
+        myrobot.SpinCarouselLeft(carouselleft);
+        myrobot.SpinCarouselRight(carouselright);
     }
 }

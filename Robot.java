@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Robot {
     RobotHardware myself = new RobotHardware();
-    double CarouselSpeed = 1;
+    double CarouselSpeed = 0;
     boolean running = false;
 
     public void initHW(HardwareMap ahwMap) {
@@ -56,8 +56,8 @@ public class Robot {
         myself.rightbackDrive.setPower(s);
     }
 
-    public void SpinCarouselLeft(){
-        myself.spinMotor.setPower(CarouselSpeed);
+    public void SpinCarouselLeft(double spin){
+        myself.spinMotor.setPower(spin);
         running = true;
     }
 
@@ -65,10 +65,34 @@ public class Robot {
         myself.spinMotor.setPower(0);
     }
 
-    public void SpinCarouselRight(){
-        myself.spinMotor.setPower(-CarouselSpeed);
+    public void SpinCarouselRight(double spin){
+        myself.spinMotor.setPower(-spin);
         running = true;
 
+    }
+
+    public void MoveBottomArmForward(){
+        myself.bottomarmMotor.setPower(1);
+    }
+
+    public void MoveBottomArmBackward(){
+        myself.bottomarmMotor.setPower(-1);
+    }
+
+    public void StopBottomArm(){
+        myself.bottomarmMotor.setPower(0);
+    }
+
+    public void MoveTopArmForward(){
+        myself.toparmMotor.setPower(1);
+    }
+
+    public void MoveTopArmBackward(){
+        myself.toparmMotor.setPower(-1);
+    }
+
+    public void StopTopArm(){
+        myself.toparmMotor.setPower(0);
     }
 
 }

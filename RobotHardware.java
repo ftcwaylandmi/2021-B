@@ -11,8 +11,8 @@ public class RobotHardware {
     public DcMotor rightfrontDrive = null;
     public DcMotor leftbackDrive = null;
     public DcMotor rightbackDrive = null;
-    public DcMotor beltMotor = null;
-    public DcMotor feederMotor = null;
+    public DcMotor bottomarmMotor = null;
+    public DcMotor toparmMotor = null;
     public DcMotor spinMotor = null;
     public DcMotor armMotor = null;
     public Servo handServo = null;
@@ -31,8 +31,8 @@ public class RobotHardware {
         rightfrontDrive = hwMap.get(DcMotor.class, "rfd");
         leftbackDrive = hwMap.get(DcMotor.class,"lbd");
         rightbackDrive = hwMap.get(DcMotor.class,"rbd");
-        beltMotor = hwMap.get(DcMotor.class,"bm");
-        feederMotor = hwMap.get(DcMotor.class,"fm");
+        bottomarmMotor = hwMap.get(DcMotor.class,"bam");
+        toparmMotor = hwMap.get(DcMotor.class,"tam");
         spinMotor = hwMap.get(DcMotor.class,"sm");
         armMotor = hwMap.get(DcMotor.class,"am");
         handServo = hwMap.get(Servo.class,"hs");
@@ -41,8 +41,8 @@ public class RobotHardware {
         rightfrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftbackDrive.setDirection(DcMotor.Direction.FORWARD);
         rightbackDrive.setDirection(DcMotor.Direction.REVERSE);
-        beltMotor.setDirection(DcMotor.Direction.FORWARD);
-        feederMotor.setDirection(DcMotor.Direction.FORWARD);
+        bottomarmMotor.setDirection(DcMotor.Direction.FORWARD);
+        toparmMotor.setDirection(DcMotor.Direction.FORWARD);
         spinMotor.setDirection(DcMotor.Direction.FORWARD);
         armMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         handServo.setDirection(Servo.Direction.FORWARD);
@@ -51,6 +51,8 @@ public class RobotHardware {
         rightfrontDrive.setPower(0);
         leftbackDrive.setPower(0);
         rightbackDrive.setPower(0);
+        bottomarmMotor.setPower(0);
+        toparmMotor.setPower(0);
         spinMotor.setPower(0);
     }
 }
